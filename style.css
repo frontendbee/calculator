@@ -1,0 +1,118 @@
+/* reset  */
+@import "modern-normalize";
+
+:root {
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, figure, p, ol, ul {
+  margin: 0;
+}
+
+ol[role="list"], ul[role="list"] {
+  list-style: none;
+  padding-inline: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+}
+
+/* colors */
+
+:root{
+    --container-col: #F0F0ED;
+    --background-col: #1C1C1C;
+    --numbers-col: #505050;
+    --operators-col: #FF9500;
+    --special-col: #D4D4D2;
+}
+
+/* body  */
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container{
+    background-color: var(--container-col);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator{
+    height: 600px;
+    width: 400px;
+    background-color: var(--background-col);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.screen{
+    height: 33%;
+    width: 100%;
+    background-color: purple;
+    display: flex;
+    align-items: center;
+}
+.screen > p{
+    width: 100%;
+    background-color: blue;
+    font-size: 3rem;
+    text-align: right;
+    margin: auto 10px;
+}
+.keyboard{
+    height: 66%;
+    width: 100%;
+    background-color: green;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.keyboard-button{
+    height: 70px;
+    width: 70px;
+    background-color: goldenrod;
+    border-radius: 100%;
+    margin: auto;
+    /* margin: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.keyboard-button > p{
+    /* margin: auto; */
+    /* width: min-content; */
+    /* background-color: blue; */
+    height: fit-content;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.keyboard-specials{
+    background-color: var(--special-col);
+}
+.keyboard-operators{
+    background-color: var(--operators-col);
+}
+.keyboard-numbers{
+    background-color: var(--numbers-col);
+}
+#btn-0{
+    grid-column: span 2;
+    width: 170px;
+    height: 70px;
+    border-radius: 50px;
+}
