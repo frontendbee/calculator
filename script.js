@@ -2,23 +2,36 @@ const keyboardNumbers = document.querySelectorAll('.keyboard-numbers');
 // keyboardNumbers.style.backgroundColor = 'purple'
 let screenP = document.querySelector('#screen-p');
 // screenP = '0';
-let result;
+let num1; //questo è un numero?
+
+let operator = 'n';
+let num2 = 2;
+
+// numbers 
 
 function inputNumber(num){
-    if(screenP.textContent == 0){
-        // screenP = num;
+    console.log('value of operator: ' + operator)
+    if(operator == 'n'){
+        if(screenP.textContent == 0){
+            // screenP = num;
+            screenP.textContent = num;
+            // document.appendChild(screenP);
+            num1 = parseInt(screenP.textContent);
+        } else {
+            screenP.textContent += num;
+            // document.appendChild(screenP);
+            num1 = parseInt(screenP.textContent);
+            // console.log(num1);
+        }
+    } else if(operator == '+' || operator == '*' || operator == '/' || operator == '-'){
         screenP.textContent = num;
-        // document.appendChild(screenP);
-        console.log('prova uno: '+ screenP.textContent)
-    } else {
-        screenP.textContent += num;
-        // document.appendChild(screenP);
-        console.log('prova due: '+ screenP.textContent)
+        num2 = parseInt(screenP.textContent);
+        console.log(num1 + ' and ' + num2)
     }
+    
 }
 
-// const btn7 = document.querySelector('#btn-7');
-// btn7.addEventListener('click', inputNumber());
+
 
 const btn0 = document.querySelector('#btn-0');
 btn0.addEventListener('click', ()=>inputNumber(0));
@@ -49,3 +62,40 @@ btn8.addEventListener('click', ()=>inputNumber(8));
 
 const btn9 = document.querySelector('#btn-9');
 btn9.addEventListener('click', ()=>inputNumber(9));
+
+// operators
+
+const multiplicationBtn = document.querySelector('#btn-multiplication');
+multiplicationBtn.addEventListener('click', ()=>chooseOperator('*'));
+
+const subtractionBtn = document.querySelector('#btn-subtraction');
+subtractionBtn.addEventListener('click', ()=>chooseOperator('-'));
+
+const additionBtn = document.querySelector('#btn-addition');
+additionBtn.addEventListener('click', ()=>chooseOperator('+'));
+
+const divisionBtn = document.querySelector('#btn-division');
+divisionBtn.addEventListener('click', ()=>chooseOperator('/'));
+
+function chooseOperator(op){
+    operator = op;
+}
+
+// equal sign 
+const equalBtn = document.querySelector('#btn-equal');
+equalBtn.addEventListener('click', solve);
+
+function solve(num1, operator, num2){
+    console.log(operator);
+    console.log(typeof(num1))
+    switch (operator){
+        case '*':
+            return num1 * num2;
+        case '-':
+            return num1 - num2;
+        case '+':
+            return num1 + num2;
+        case '/':
+            return num1 / num2;
+    }
+}
