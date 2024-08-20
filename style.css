@@ -1,5 +1,5 @@
 /* reset  */
-@import "modern-normalize";
+/* @import "modern-normalize"; */
 
 :root {
   line-height: 1.5;
@@ -84,7 +84,7 @@ body{
 .keyboard-button{
     height: 70px;
     width: 70px;
-    background-color: goldenrod;
+    /* background-color: goldenrod; */
     border-radius: 100%;
     margin: auto;
     /* margin: auto; */
