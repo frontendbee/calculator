@@ -5,7 +5,8 @@ let screenP = document.querySelector('#screen-p');
 let num1; //questo è un numero?
 
 let operator = 'n';
-let num2 = 2;
+let num2 = 0; //prova a mettere solo 'let num2;'
+let resultNum = 0;
 
 // numbers 
 
@@ -23,12 +24,20 @@ function inputNumber(num){
             num1 = parseInt(screenP.textContent);
             // console.log(num1);
         }
-    } else if(operator == '+' || operator == '*' || operator == '/' || operator == '-'){
-        screenP.textContent = num;
-        num2 = parseInt(screenP.textContent);
+    } else if (operator == '+' || operator == '*' || operator == '/' || operator == '-' || operator == '*%') {
+        if (num2 == 0) {
+            screenP.textContent = num;
+            num2 = parseInt(screenP.textContent);
+            console.log('else if, primo caso');
+        } else {
+            screenP.textContent += num;
+            num2 = parseInt(screenP.textContent);
+            console.log('else if, secondo caso');
+        }
+
         console.log(num1 + ' and ' + num2)
     }
-    
+
 }
 
 
@@ -77,25 +86,52 @@ additionBtn.addEventListener('click', ()=>chooseOperator('+'));
 const divisionBtn = document.querySelector('#btn-division');
 divisionBtn.addEventListener('click', ()=>chooseOperator('/'));
 
+const percentageBtn = document.querySelector('#btn-percentage');
+percentageBtn.addEventListener('click', ()=>chooseOperator('*%'));
+
 function chooseOperator(op){
     operator = op;
 }
 
 // equal sign 
 const equalBtn = document.querySelector('#btn-equal');
-equalBtn.addEventListener('click', solve);
+equalBtn.addEventListener('click', ()=>solve(num1, operator, num2));
 
 function solve(num1, operator, num2){
     console.log(operator);
-    console.log(typeof(num1))
+    console.log(typeof(num1));
+    console.log(typeof(num2));
     switch (operator){
         case '*':
-            return num1 * num2;
+            // console.log(num1*num2);
+            resultNum = num1 * num2;
+            console.log(resultNum);
+            screenP.textContent = resultNum;
+            break;
         case '-':
-            return num1 - num2;
+            // return num1 - num2;
+            resultNum = num1 - num2;
+            console.log(resultNum);
+            screenP.textContent = resultNum;
+            break;
+            // console.log('resultNum')
         case '+':
-            return num1 + num2;
+            resultNum = num1 + num2;
+            console.log(resultNum);
+            screenP.textContent = resultNum;
+            break;
         case '/':
-            return num1 / num2;
-    }
+            resultNum = num1 / num2;
+            console.log(resultNum);
+            screenP.textContent = resultNum;
+            break;
+        case '*%':
+            console.log('caso %')
+            num1 = num1/100;
+            console.log('this is num1: '+ num1)
+            resultNum = num1 * num2;
+            console.log(resultNum);
+            screenP.textContent = resultNum;
+            break;
+    } 
 }
