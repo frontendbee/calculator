@@ -2,11 +2,11 @@ const keyboardNumbers = document.querySelectorAll('.keyboard-numbers');
 // keyboardNumbers.style.backgroundColor = 'purple'
 let screenP = document.querySelector('#screen-p');
 // screenP = '0';
-let num1; 
+let num1;
 // let num1 = parseInt(screenP.textContent);
 
 let operator = 'n';
-let num2 = 0; //prova a mettere solo 'let num2;'
+let num2; //prova a mettere solo 'let num2;'
 let resultNum = 0;
 
 // numbers 
@@ -18,21 +18,27 @@ function inputNumber(num) {
             // screenP = num;
             screenP.textContent = num;
             // document.appendChild(screenP);
-            num1 = parseInt(screenP.textContent);
+            // num1 = parseInt(screenP.textContent);
+            num1 = screenP.textContent;
+            console.log('num1 is a ' + typeof (num1))
         } else {
             screenP.textContent += num;
             // document.appendChild(screenP);
-            num1 = parseInt(screenP.textContent);
-            // console.log(num1);
+            num1 = screenP.textContent;
+            console.log(num1);
+            console.log(screenP.textContent);
+            console.log('num1 is a ' + typeof (num1))
         }
     } else if (operator == '+' || operator == '*' || operator == '/' || operator == '-' || operator == '*%') {
-        if (num2 == 0) {
+        if (num2 == undefined) {
             screenP.textContent = num;
-            num2 = parseInt(screenP.textContent);
+            // num2 = parseInt(screenP.textContent);
+            num2 = screenP.textContent;
             console.log('else if, primo caso');
         } else {
             screenP.textContent += num;
-            num2 = parseInt(screenP.textContent);
+            // num2 = parseInt(screenP.textContent);
+            num2 = screenP.textContent;
             console.log('else if, secondo caso');
         }
 
@@ -100,9 +106,11 @@ equalBtn.addEventListener('click', () => solve(num1, operator, num2));
 // equalBtn.addEventListener('click', () => updateValues(num1, num2));
 
 function solve(a, operator, b) {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
     console.log(operator);
-    console.log(typeof (num1));
-    console.log(typeof (num2));
+    console.log('num1 is a ' + typeof (num1));
+    console.log('num2 is a ' + typeof (num2));
     switch (operator) {
         case '*':
             // console.log(num1*num2);
@@ -112,7 +120,9 @@ function solve(a, operator, b) {
             // num1 = screenP;
             // num2 = 0;
             operator = 'n';
-            num2 = 0;
+            num2 = undefined;
+            console.log('num1 is a ' + typeof (num1));
+            console.log('num2 is a ' + typeof (num2));
             break;
         case '-':
             // return num1 - num2;
@@ -120,7 +130,9 @@ function solve(a, operator, b) {
             console.log(num1);
             // screenP.textContent = num1;
             operator = 'n';
-            num2 = 0;
+            num2 = undefined;
+            console.log('num1 is a ' + typeof (num1));
+            console.log('num2 is a ' + typeof (num2));
             break;
         // console.log('num1')
         case '+':
@@ -128,14 +140,18 @@ function solve(a, operator, b) {
             console.log(num1);
             // screenP.textContent = num1;
             operator = 'n';
-            num2 = 0;
+            num2 = undefined;
+            console.log('num1 is a ' + typeof (num1));
+            console.log('num2 is a ' + typeof (num2));
             break;
         case '/':
             num1 = num1 / num2;
             console.log(num1);
             // screenP.textContent = num1;
             operator = 'n';
-            num2 = 0;
+            num2 = undefined;
+            console.log('num1 is a ' + typeof (num1));
+            console.log('num2 is a ' + typeof (num2));
             break;
         case '*%':
             console.log('caso %')
@@ -144,20 +160,48 @@ function solve(a, operator, b) {
             num1 = num1 * num2;
             console.log(num1);
             operator = 'n';
-            num2 = 0;
+            num2 = undefined;
+            console.log('num1 is a ' + typeof (num1));
+            console.log('num2 is a ' + typeof (num2));
             // screenP.textContent = num1;
             break;
     }
-    screenP.textContent = parseFloat(num1.toFixed(4)); // Mostra il risultato sullo schermo
-    
+    screenP.textContent = parseFloat(num1.toFixed(4));
+    // screenP.textContent = parseFloat(num2.toFixed(4));
+
     // return operator;
     changeNum(num1, operator, num2);
     return num1; // Restituisce il risultato
-    
+
+    // num1 = num1.toString();
+
 }
 
-function changeNum(newValueNum1, newValueOperator, newValueNum2){
-    num1 = newValueNum1;
-    operator = newValueOperator;
-    num2 = newValueNum2;
+function changeNum(newValueNum1, newValueOperator, newValueNum2) {
+    num1 = newValueNum1.toString();
+    // operator = newValueOperator;
+    if (num2 !== undefined) {
+        num2 = newValueNum2.toString();
+    }
+
 }
+
+
+// point button 
+
+const pointBtn = document.querySelector('#btn-point');
+pointBtn.addEventListener('click', function () {
+    screenP.textContent = screenP.textContent + '.';
+    if (operator == '+' || operator == '*' || operator == '/' || operator == '-' || operator == '*%') {
+        num2 = parseInt(screenP.textContent);
+        console.log('valore di num2: ' + num2);
+        console.log('num1 is a ' + typeof (num1));
+        console.log('num2 is a ' + typeof (num2));
+    } else {
+        num1 = parseInt(screenP.textContent);
+        console.log('valore di num1: ' + num1);
+        console.log('num1 is a ' + typeof (num1));
+        console.log('num2 is a ' + typeof (num2));
+    }
+
+})
