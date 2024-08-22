@@ -58,26 +58,35 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 10px;
+    border-radius: 20px;
 }
 
 .screen{
     height: 33%;
     width: 100%;
-    background-color: purple;
+    background-color: var(--background-col);
     display: flex;
     align-items: center;
 }
 .screen > p{
     width: 100%;
-    background-color: blue;
+    word-wrap: break-word;
+    max-width: 380px;
+    max-height: 195px;
+    /* background-color: blue; */
     font-size: 3rem;
     text-align: right;
     margin: auto 10px;
+    color: var(--background-col);
+    padding: 10px;
+    border: #D4D4D2 1px solid;
+    background-color: var(--special-col);
 }
 .keyboard{
     height: 66%;
     width: 100%;
-    background-color: green;
+    background-color: var(--background-col);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }

@@ -33,7 +33,7 @@ function inputNumber(num) {
         }
         // input of num2 or num1 after an operation
     } else if (operator == '+' || operator == '*' || operator == '/' || operator == '-' || operator == '*%') {
-        if(equalSign == 'off'){
+        if (equalSign == 'off') {
             if (num2 == undefined) {
                 screenP.textContent = num;
                 // num2 = parseInt(screenP.textContent);
@@ -45,14 +45,14 @@ function inputNumber(num) {
                 num2 = screenP.textContent;
                 console.log('else if, secondo caso');
             }
-        } else if(equalSign == 'on'){
+        } else if (equalSign == 'on') {
             screenP.textContent = num;
             num1 = screenP.textContent;
 
             // prova 
             operator = 'n';
         }
-        
+
 
         console.log(num1 + ' and ' + num2)
     }
@@ -159,7 +159,12 @@ function solve(a, operator, b) {
             console.log('num2 is a ' + typeof (num2));
             break;
         case '/':
-            num1 = num1 / num2;
+            if (num2 == 0) {
+                num1 = 0;
+            } else {
+                num1 = num1 / num2;
+            }
+
             console.log(num1);
             // screenP.textContent = num1;
             // operator = 'n';
@@ -208,7 +213,8 @@ function changeNum(newValueNum1, newValueOperator, newValueNum2) {
 // point button 
 
 const pointBtn = document.querySelector('#btn-point');
-pointBtn.addEventListener('click', function () {
+pointBtn.addEventListener('click', ()=> pressPointButton())
+function pressPointButton(){
     screenP.textContent = screenP.textContent + '.';
     if (operator == '+' || operator == '*' || operator == '/' || operator == '-' || operator == '*%') {
         num2 = parseInt(screenP.textContent);
@@ -221,5 +227,90 @@ pointBtn.addEventListener('click', function () {
         console.log('num1 is a ' + typeof (num1));
         console.log('num2 is a ' + typeof (num2));
     }
+}
 
+// AC button and reset function
+
+function resetCalculator() {
+    num1 = undefined;
+    num2 = undefined;
+    operator = 'n';
+    equalSign = undefined;
+    screenP.textContent = 0;
+}
+
+const btnAC = document.querySelector('#btn-ac');
+btnAC.addEventListener('click', () => resetCalculator());
+
+// +/- button
+const btnChange = document.querySelector('#btn-change');
+btnChange.addEventListener('click', function () {
+    if (screenP.textContent == num1) {
+        screenP.textContent = -num1;
+        num1 = -num1;
+    } else if (screenP.textContent == num2) {
+        screenP.textContent = -num2;
+        num2 = -num2;
+    }
+});
+
+
+// keyboard 
+document.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'Delete':
+            resetCalculator();
+            break;
+        case '%':
+            chooseOperator('/');
+            break;
+        case '/':
+            chooseOperator('*%');
+            break;
+        case '7':
+            inputNumber(7);
+            break;
+        case '8':
+            inputNumber(8);
+            break;
+        case '9':
+            inputNumber(9);
+            break;
+        case '*':
+            chooseOperator('*');
+            break;
+        case '4':
+            inputNumber(4);
+            break;
+        case '5':
+            inputNumber(5);
+            break;
+        case '6':
+            inputNumber(6);
+            break;
+        case '-':
+            chooseOperator('-');
+            break;
+        case '1':
+            inputNumber(1);
+            break;
+        case '2':
+            inputNumber(2);
+            break;
+        case '3':
+            inputNumber(3);
+            break;
+        case '+':
+            chooseOperator('+');
+            break;
+        case '0':
+            inputNumber(0);
+            break;
+        case '.':
+            pressPointButton();
+            break;
+        case 'Enter':
+            solve(num1, operator, num2);
+            break;
+    }
 })
