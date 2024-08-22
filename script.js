@@ -8,11 +8,13 @@ let num1;
 let operator = 'n';
 let num2; //prova a mettere solo 'let num2;'
 let resultNum = 0;
+let equalSign;
 
 // numbers 
 
 function inputNumber(num) {
     console.log('value of operator: ' + operator)
+    // first input 
     if (operator == 'n') {
         if (screenP.textContent == 0) {
             // screenP = num;
@@ -29,18 +31,28 @@ function inputNumber(num) {
             console.log(screenP.textContent);
             console.log('num1 is a ' + typeof (num1))
         }
+        // input of num2 or num1 after an operation
     } else if (operator == '+' || operator == '*' || operator == '/' || operator == '-' || operator == '*%') {
-        if (num2 == undefined) {
+        if(equalSign == 'off'){
+            if (num2 == undefined) {
+                screenP.textContent = num;
+                // num2 = parseInt(screenP.textContent);
+                num2 = screenP.textContent;
+                console.log('else if, primo caso');
+            } else {
+                screenP.textContent += num;
+                // num2 = parseInt(screenP.textContent);
+                num2 = screenP.textContent;
+                console.log('else if, secondo caso');
+            }
+        } else if(equalSign == 'on'){
             screenP.textContent = num;
-            // num2 = parseInt(screenP.textContent);
-            num2 = screenP.textContent;
-            console.log('else if, primo caso');
-        } else {
-            screenP.textContent += num;
-            // num2 = parseInt(screenP.textContent);
-            num2 = screenP.textContent;
-            console.log('else if, secondo caso');
+            num1 = screenP.textContent;
+
+            // prova 
+            operator = 'n';
         }
+        
 
         console.log(num1 + ' and ' + num2)
     }
@@ -98,6 +110,8 @@ percentageBtn.addEventListener('click', () => chooseOperator('*%'));
 
 function chooseOperator(op) {
     operator = op;
+    equalSign = 'off';
+    num2 = undefined
 }
 
 // equal sign 
@@ -119,8 +133,8 @@ function solve(a, operator, b) {
             // screenP.textContent = num1;
             // num1 = screenP;
             // num2 = 0;
-            operator = 'n';
-            num2 = undefined;
+            // operator = 'n';
+            // num2 = undefined;
             console.log('num1 is a ' + typeof (num1));
             console.log('num2 is a ' + typeof (num2));
             break;
@@ -129,8 +143,8 @@ function solve(a, operator, b) {
             num1 = num1 - num2;
             console.log(num1);
             // screenP.textContent = num1;
-            operator = 'n';
-            num2 = undefined;
+            // operator = 'n';
+            // num2 = undefined;
             console.log('num1 is a ' + typeof (num1));
             console.log('num2 is a ' + typeof (num2));
             break;
@@ -139,8 +153,8 @@ function solve(a, operator, b) {
             num1 = num1 + num2;
             console.log(num1);
             // screenP.textContent = num1;
-            operator = 'n';
-            num2 = undefined;
+            // operator = 'n';
+            // num2 = undefined;
             console.log('num1 is a ' + typeof (num1));
             console.log('num2 is a ' + typeof (num2));
             break;
@@ -148,8 +162,8 @@ function solve(a, operator, b) {
             num1 = num1 / num2;
             console.log(num1);
             // screenP.textContent = num1;
-            operator = 'n';
-            num2 = undefined;
+            // operator = 'n';
+            // num2 = undefined;
             console.log('num1 is a ' + typeof (num1));
             console.log('num2 is a ' + typeof (num2));
             break;
@@ -159,16 +173,20 @@ function solve(a, operator, b) {
             console.log('this is num1: ' + num1)
             num1 = num1 * num2;
             console.log(num1);
-            operator = 'n';
-            num2 = undefined;
+            // operator = 'n';
+            // num2 = undefined;
             console.log('num1 is a ' + typeof (num1));
             console.log('num2 is a ' + typeof (num2));
             // screenP.textContent = num1;
             break;
     }
+
+    // num2 = undefined;
+    // operator = 'n';
+
     screenP.textContent = parseFloat(num1.toFixed(4));
     // screenP.textContent = parseFloat(num2.toFixed(4));
-
+    equalSign = 'on';
     // return operator;
     changeNum(num1, operator, num2);
     return num1; // Restituisce il risultato
