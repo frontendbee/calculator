@@ -74,7 +74,6 @@ body{
     word-wrap: break-word;
     max-width: 380px;
     max-height: 195px;
-    /* background-color: blue; */
     font-size: 3rem;
     text-align: right;
     margin: auto 10px;
@@ -93,18 +92,14 @@ body{
 .keyboard-button{
     height: 70px;
     width: 70px;
-    /* background-color: goldenrod; */
     border-radius: 100%;
     margin: auto;
-    /* margin: auto; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .keyboard-button > p{
-    /* margin: auto; */
-    /* width: min-content; */
-    /* background-color: blue; */
     height: fit-content;
     font-size: 1.5rem;
     font-weight: 400;
@@ -119,9 +114,17 @@ body{
 .keyboard-numbers{
     background-color: var(--numbers-col);
 }
+.keyboard-numbers > p{
+    color: var(--container-col)
+}
 #btn-0{
     grid-column: span 2;
     width: 170px;
     height: 70px;
     border-radius: 50px;
+}
+
+p{
+    pointer-events: none;
+    user-select: none;
 }
